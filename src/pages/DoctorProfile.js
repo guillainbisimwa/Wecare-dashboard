@@ -34,7 +34,7 @@ export default function DoctorProfile({color = 'primary'}) {
         </Typography>
 
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={8} md={8}>
+          <Grid item xs={12} sm={7} md={7}>
             <Card
               sx={{
                 py: 5,
@@ -66,17 +66,25 @@ export default function DoctorProfile({color = 'primary'}) {
             </Card>
           </Grid>
 
-          <Grid item xs={12} sm={4} md={4}>
+          <Grid item xs={12} sm={5} md={5}>
 
           <Card
               sx={{
-                py: 1,
-                px: 1,
+                py: 5,
+                px: 5,
                 boxShadow: 0,
                 color: (theme) => theme.palette[color].darker,
                 bgcolor: (theme) => theme.palette[color].lighter,
               }}
             >
+
+              <Typography variant="subtitle2" sx={{ pt: 0.5 }}> 
+                About
+              </Typography>
+              <Typography variant="body2" sx={{ py: 1 }}> 
+                About about about about about about about  about about about about about
+              </Typography>
+
             <Stack direction="row" spacing={3}>
               <Iconify icon="ant-design:android-filled" width={24} height={24} />
               <Typography variant="body2" sx={{ pt: 0.5 }}> 
@@ -85,13 +93,12 @@ export default function DoctorProfile({color = 'primary'}) {
               </Typography>
             </Stack>
 
-            <Divider sx={{ my: 1 }}/>
+            {/* <Divider sx={{ my: 1 }}/> */}
 
             <Stack direction="row" spacing={3}>
               <Iconify icon="ant-design:android-filled" width={24} height={24} />
               <Typography variant="body2" sx={{ pt: 0.5 }}> 
-                Street Num 12, South Africa
-                Street Num 12, South Africa
+                +2438504154464
               </Typography>
               
             </Stack>

@@ -2,8 +2,11 @@ import { useState } from 'react';
 // @mui
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, MenuItem, Avatar, IconButton, Popover } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 export default function AccountPopover() {
+  const navigate = useNavigate();
+
   const [open, setOpen] = useState(null);
 
   const handleOpen = (event) => {
@@ -11,8 +14,9 @@ export default function AccountPopover() {
   };
 
   const handleClose = () => {
-    // TODO: Logout User
     setOpen(null);
+    navigate('/login', { replace: true });
+
   };
 
   return (
