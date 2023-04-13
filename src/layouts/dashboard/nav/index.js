@@ -54,7 +54,7 @@ export default function Nav({ openNav, onCloseNav }) {
         <Box
             component="img"
             src="/assets/1.png"
-            sx={{ height: 20, mx: 'auto', my: { xs: 5, sm: 10 } }}
+            sx={{ height: 50, mx: 'auto', my: { xs: 5, sm: 10 } }}
           />
       </Box>
 
