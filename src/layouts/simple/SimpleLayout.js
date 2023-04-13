@@ -25,11 +25,11 @@ export default function SimpleLayout() {
   return (
     <>
       <StyledHeader>
-      <Box
-      component="img"
-      src="assets/1.png" // => your path
-      sx={{ width: 40, height: 40, cursor: 'pointer'}}
-    />
+        <Box
+          component="img"
+          src="assets/1.png" // => your path
+          sx={{ width: 40, height: 40, cursor: 'pointer'}}
+      />
       </StyledHeader>
       <Outlet />
     </>
