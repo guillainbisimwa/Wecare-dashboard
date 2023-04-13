@@ -2,6 +2,8 @@ import { Helmet } from 'react-helmet-async';
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 // @mui
 import {
   Card,
@@ -91,6 +93,8 @@ function applySortFilter(array, comparator, query) {
 }
 
 export default function DoctorPage() {
+  const navigate = useNavigate();
+
   const [open, setOpen] = useState(null);
 
   const [page, setPage] = useState(0);
@@ -126,6 +130,11 @@ export default function DoctorPage() {
       return;
     }
     setSelected([]);
+  };
+
+  const onViewProfile = () => {
+    console.log("ok");
+    navigate('/login', { replace: true });
   };
 
   const handleClick = (event, name) => {
@@ -293,14 +302,9 @@ export default function DoctorPage() {
           },
         }}
       >
-        <MenuItem>
-          <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }} />
-          Edit
-        </MenuItem>
-
-        <MenuItem sx={{ color: 'error.main' }}>
-          <Iconify icon={'eva:trash-2-outline'} sx={{ mr: 2 }} />
-          Delete
+        <MenuItem onClick={onViewProfile}>
+          <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }}  />
+          View profile
         </MenuItem>
       </Popover>
     </>
