@@ -11,6 +11,7 @@ export default function AccountPopover() {
   };
 
   const handleClose = () => {
+    // TODO: Logout User
     setOpen(null);
   };
 

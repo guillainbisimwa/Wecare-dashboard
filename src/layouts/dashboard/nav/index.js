@@ -2,8 +2,7 @@ import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 // @mui
-import { styled, alpha } from '@mui/material/styles';
-import { Box, Link, Drawer, Typography, Avatar } from '@mui/material';
+import { Box, Drawer } from '@mui/material';
 // mock
 // hooks
 import useResponsive from '../../../hooks/useResponsive';
@@ -12,19 +11,7 @@ import Scrollbar from '../../../components/scrollbar';
 import NavSection from '../../../components/nav-section';
 import navConfig from './config';
 
-// ----------------------------------------------------------------------
-
 const NAV_WIDTH = 280;
-
-const StyledAccount = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  padding: theme.spacing(2, 2.5),
-  borderRadius: Number(theme.shape.borderRadius) * 1.5,
-  backgroundColor: alpha(theme.palette.grey[500], 0.12),
-}));
-
-// ----------------------------------------------------------------------
 
 Nav.propTypes = {
   openNav: PropTypes.bool,
@@ -50,30 +37,13 @@ export default function Nav({ openNav, onCloseNav }) {
         '& .simplebar-content': { height: 1, display: 'flex', flexDirection: 'column' },
       }}
     >
-      <Box sx={{ px: 2.5, py: 3, display: 'inline-flex' }}>
+      <Box sx={{ display: 'inline-flex' }}>
+      {/* px: 2.5, py: 3,  */}
         <Box
             component="img"
-            src="/assets/1.png"
-            sx={{ height: 50, mx: 'auto', my: { xs: 5, sm: 10 } }}
+            src="/assets/2.png"
+            sx={{ height: 50, mx: 'auto', my: { xs: 4 } }}
           />
-      </Box>
-
-      <Box sx={{ mb: 5, mx: 2.5 }}>
-        <Link underline="none">
-          <StyledAccount>
-            <Avatar src="/assets/1.png" alt="photoURL" />
-
-            <Box sx={{ ml: 2 }}>
-              <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
-                Demo test
-              </Typography>
-
-              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                Admin
-              </Typography>
-            </Box>
-          </StyledAccount>
-        </Link>
       </Box>
 
       <NavSection data={navConfig} />

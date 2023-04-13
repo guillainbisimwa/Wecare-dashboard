@@ -10,11 +10,11 @@ export default function DashboardAppPage() {
   return (
     <>
       <Helmet>
-        <title> Dashboard | Wecare </title>
+        <title> Dashboard | We care </title>
       </Helmet>
 
       <Container maxWidth="xl">
-        <Typography variant="h4" sx={{ mb: 5 }}>
+        <Typography variant="h4" sx={{ mb: 3 }}>
           Hi, Welcome back
         </Typography>
 
