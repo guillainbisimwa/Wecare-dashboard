@@ -4,6 +4,7 @@ import DashboardLayout from './layouts/dashboard';
 import SimpleLayout from './layouts/simple';
 // //
 import LoginPage from './pages/LoginPage';
+import DoctorPage from './pages/DoctorPage';
 import Page404 from './pages/Page404';
 import DashboardAppPage from './pages/DashboardAppPage';
 
@@ -15,7 +16,7 @@ export default function Router() {
       children: [
         { element: <Navigate to="/dashboard/app" />, index: true },
         { path: 'app', element: <DashboardAppPage /> },
-        // { path: 'user', element: <UserPage /> },
+        { path: 'doctor', element: <DoctorPage /> },
       ],
     },
     {
