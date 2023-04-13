@@ -109,8 +109,11 @@ export default function DoctorPage() {
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const handleOpenMenu = (event) => {
+  const [currentDoctor, setCurrentDoctor ] = useState(null)
+
+  const handleOpenMenu = (event, id) => {
     setOpen(event.currentTarget);
+    setCurrentDoctor(id)
   };
 
   const handleCloseMenu = () => {
@@ -130,11 +133,6 @@ export default function DoctorPage() {
       return;
     }
     setSelected([]);
-  };
-
-  const onViewProfile = () => {
-    console.log("ok");
-    navigate('/login', { replace: true });
   };
 
   const handleClick = (event, name) => {
@@ -231,7 +229,10 @@ export default function DoctorPage() {
                         </TableCell>
 
                         <TableCell align="right">
-                          <IconButton size="large" color="inherit" onClick={handleOpenMenu}>
+                          <IconButton size="large" color="inherit" onClick={(e)=>{
+                            
+                            handleOpenMenu(e, id);
+                            }}>
                             <Iconify icon={'eva:more-vertical-fill'} />
                           </IconButton>
                         </TableCell>
@@ -302,8 +303,11 @@ export default function DoctorPage() {
           },
         }}
       >
-        <MenuItem onClick={onViewProfile}>
-          <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }}  />
+        <MenuItem  onClick={()=> {
+          console.log(currentDoctor);
+          navigate('/dashboard/doctor-profile', { replace: true }, {id: "ok"});
+        }}>
+          <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }} />
           View profile
         </MenuItem>
       </Popover>
