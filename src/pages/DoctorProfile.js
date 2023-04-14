@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet-async';
 // @mui
-import { Grid, Container, Typography, Card, Stack, Divider } from '@mui/material';
+import { Grid, Container, Typography, Card, Stack } from '@mui/material';
 import { alpha, styled } from '@mui/material/styles';
 import Iconify from '../components/iconify';
 
