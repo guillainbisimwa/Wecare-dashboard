@@ -4,18 +4,18 @@ import { HelmetProvider } from 'react-helmet-async';
 import Router from './routes';
 // theme
 import ThemeProvider from './theme';
-// components
-
-// ----------------------------------------------------------------------
 
 export default function App() {
   return (
-    <HelmetProvider>
-      <BrowserRouter>
-        <ThemeProvider>
-          <Router />
-        </ThemeProvider>
-      </BrowserRouter>
-    </HelmetProvider>
+    <>
+      <style>{`body { background-color: #f2f8ff; }`}</style>
+      <HelmetProvider>
+        <BrowserRouter>
+          <ThemeProvider>
+            <Router />
+          </ThemeProvider>
+        </BrowserRouter>
+      </HelmetProvider>
+    </>
   );
 }

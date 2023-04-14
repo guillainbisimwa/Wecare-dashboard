@@ -44,6 +44,7 @@ export default function Nav({ openNav, onCloseNav }) {
           sx={{
             mx: 'auto',
             mb: { xs: 5 },
+            borderBottom: '1px solid #ccc'
           }}
         />
       </Box>
