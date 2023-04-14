@@ -24,7 +24,7 @@ export default function DashboardAppPage() {
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Patients" total={200} color="info" icon={'ant-design:apple-filled'} />
+            <AppWidgetSummary title="Patients" total={200} color="error" icon={'ant-design:apple-filled'} />
           </Grid>
 
         </Grid>
