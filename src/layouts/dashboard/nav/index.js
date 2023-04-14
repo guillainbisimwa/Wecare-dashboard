@@ -38,12 +38,14 @@ export default function Nav({ openNav, onCloseNav }) {
       }}
     >
       <Box sx={{ display: 'inline-flex' }}>
-      {/* px: 2.5, py: 3,  */}
         <Box
-            component="img"
-            src="/assets/2.png"
-            sx={{ height: 50, mx: 'auto', my: { xs: 4 } }}
-          />
+          component="img"
+          src="/assets/logo.png"
+          sx={{
+            mx: 'auto',
+            mb: { xs: 5 },
+          }}
+        />
       </Box>
 
       <NavSection data={navConfig} />

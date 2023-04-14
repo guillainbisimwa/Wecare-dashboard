@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Container, Typography } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 // sections
 import { LoginForm } from '../sections/auth/login';
 
@@ -34,7 +34,16 @@ export default function LoginPage() {
       <StyledRoot>
         <Container maxWidth="sm">
           <StyledContent>
-            <Typography variant="h4" gutterBottom>
+            <Box
+              component="img"
+              src="/assets/logo.png"
+              sx={{ 
+                mx: 'auto',
+                my: { xs: 5 },
+                borderRadius: 5 
+              }}
+            />
+            <Typography variant="h4" gutterBottom sx={{ textAlign: 'center' }}>
               LOGIN
             </Typography>
 
