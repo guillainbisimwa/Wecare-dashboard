@@ -1,3 +1,6 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet-async';
 // @mui
 import { styled } from '@mui/material/styles';
@@ -24,6 +27,24 @@ const StyledContent = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+
+  const user = useSelector((state) => state.user.user);
+  
+  useEffect(() => {
+    // Redirect the user to the dashboard page if they are already logged in
+    if (user.success) {
+      console.log("navigate", user);
+
+      navigate('/dashboard', { replace: true });
+    }
+    // Add a default return value of undefined to the arrow function
+    // since useEffect does not require a return value.
+    // This will prevent the "Expected to return a value at the end of arrow function" error.
+    return undefined;
+  }, [user, navigate]);
+  
+  
 
   return (
     <>
