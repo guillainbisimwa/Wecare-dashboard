@@ -33,7 +33,7 @@ import { DoctorListHead, DoctorListToolbar } from '../sections/@dashboard/doctor
 const USERLIST = [
   {
     id: "123",
-    avatarUrl: `/assets/1.png`,
+    avatarUrl: `/assets/man.png`,
     name: "Guy L",
     company: "We care",
     isVerified: true,
@@ -42,7 +42,7 @@ const USERLIST = [
   },
   {
     id: "124",
-    avatarUrl: `/assets/1.png`,
+    avatarUrl: `/assets/man.png`,
     name: "Ahmed Rayan",
     company: "We care",
     isVerified: false,
