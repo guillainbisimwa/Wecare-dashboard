@@ -1,13 +1,13 @@
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-// routes
+import { Provider } from 'react-redux'; // Add this import statement
+import { store } from './redux/Store'; // Import your Redux store
 import Router from './routes';
-// theme
 import ThemeProvider from './theme';
 
 export default function App() {
   return (
-    <>
+    <Provider store={store}> {/* Add Provider here */}
       <style>{`body { background-color: #f2f8ff; }`}</style>
       <HelmetProvider>
         <BrowserRouter>
@@ -16,6 +16,6 @@ export default function App() {
           </ThemeProvider>
         </BrowserRouter>
       </HelmetProvider>
-    </>
+    </Provider>
   );
 }
