@@ -1,12 +1,31 @@
 import { Helmet } from 'react-helmet-async';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 // @mui
 import { Grid, Container, Typography } from '@mui/material';
 import {
   AppWidgetSummary,
 } from '../sections/@dashboard/app';
 
-export default function DashboardAppPage() {
 
+export default function DashboardAppPage() {
+  const navigate = useNavigate();
+
+  const user = useSelector((state) => state.user.user);
+  
+  useEffect(() => {
+    // Redirect the user to the dashboard page if they are already logged in
+    if (!user.success) {
+      console.log("navigate", user);
+
+      navigate('/login', { replace: true });
+    }
+    // Add a default return value of undefined to the arrow function
+    // since useEffect does not require a return value.
+    // This will prevent the "Expected to return a value at the end of arrow function" error.
+    return undefined;
+  }, [user, navigate]);
   return (
     <>
       <Helmet>
