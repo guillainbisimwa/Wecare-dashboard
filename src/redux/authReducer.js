@@ -1,28 +1,28 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from 'k';
 
 const authSlice = createSlice({
-  name: 'user',
+  name: 'auth',
   initialState: {
-    user: {
-        "success": true,
-        "email":"admin1@wecare.com",
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWU3NGI0NjM4Zjc1MTgwZjM1ZDQ4NiIsImlhdCI6MTY4MTQ4NDM5OCwiZXhwIjoxNjg0MDc2Mzk4fQ.inTfHfm8d0TFcnqENANau_X7Xlxh03lmickSRveipRc"
-    },
+    user: null,
+    error: null,
+    isLoading: false,
   },
   reducers: {
-    loginUser: (state, action) => {
-      state.user = action.payload;
+    loginStart: (state) => {
+      state.isLoading = true;
     },
-    logoutUser: (state) => {
-      state.user = {
-        token: '',
-        email: '',
-        success: false
-      };
+    loginSuccess: (state, action) => {
+      state.isLoading = false;
+      state.user = action.payload;
+      state.error = null;
+    },
+    loginFailure: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
     },
   },
 });
 
-export const { loginUser, logoutUser } = authSlice.actions;
+export const { loginStart, loginSuccess, loginFailure } = authSlice.actions;
 
 export default authSlice.reducer;
