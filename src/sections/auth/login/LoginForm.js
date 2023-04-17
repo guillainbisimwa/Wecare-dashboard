@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox, Typography } from '@mui/material';
+import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox, Typography, CircularProgress, Box } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import Iconify from '../../../components/iconify';
 import { login } from '../../../redux/loginAction';
@@ -11,36 +11,39 @@ export default function LoginForm() {
   const dispatch = useDispatch();
 
   const { user, error, isLoading } = useSelector((state) => state.auth);
+  console.log("user", user);
+  useEffect(() => {
+    // Redirect the user to the dashboard page if they are already logged in
+    if (user) {
+      console.log("navigateeee", user);
+
+      navigate('/dashboard', { replace: true });
+    }
+  }, [user, navigate]);
 
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('admin1@wecare.com');
+  const [password, setPassword] = useState('wecare2022');
 
   const handleClick = (e) => {
     e.preventDefault();
 
-        // dispatch(login(email, password));
-        console.log("user1",user);
-        console.log("error1",error);
-        console.log("isLoading1",isLoading);
-
     dispatch(login(email, password));
-    // dispatch(login(email, password));
-    console.log("user",user);
-    console.log("error",error);
-    console.log("isLoading",isLoading);
-   
   };
 
-  if (user) {
-    return  navigate('/dashboard', { replace: true });;
-  }
+  // if (user) {
+  //   console.log("u", user);
+  //   return navigate('/dashboard', { replace: true });
+  // }
+
+ 
 
   return (
     <>
       <Stack spacing={3}>
-        {error &&  <Typography variant="h4" sx={{ mb: 3 }}>{error}</Typography>}
-        
+        {error && <Typography variant="body" sx={{ textAlign: 'center', color: 'red', mb: 3 }}>{error}</Typography>}
+        {isLoading && <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}><CircularProgress /></Box>}
+
         <TextField name="email" label="Email address" value={email} onChange={(e) => setEmail(e.target.value)} />
 
         <TextField

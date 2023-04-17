@@ -11,8 +11,7 @@ import DashboardAppPage from './pages/DashboardAppPage';
 import DoctorProfile from './pages/DoctorProfile';
 
 export default function Router() {
-  const user = useSelector((state) => state.user); // get the user from the store
-  console.log("User",user);
+  const { user, error, isLoading } = useSelector((state) => state.auth);
 
   const routes = useRoutes([
     {
