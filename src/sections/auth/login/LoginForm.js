@@ -1,21 +1,34 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+
+
 import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox, Typography, CircularProgress, Box } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
+import {store} from '../../../redux/Store';
+import { fetchDoctors } from '../../../redux/doctorsReducer';
 import Iconify from '../../../components/iconify';
 import { login } from '../../../redux/loginAction';
+
 
 export default function LoginForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { user, error, isLoading } = useSelector((state) => state.auth);
+  const { list, errorDoctor, isLoadingDoctor } = useSelector((state) => state.doctors);
+
+  store.dispatch(fetchDoctors());
+
   console.log("user", user);
   useEffect(() => {
     // Redirect the user to the dashboard page if they are already logged in
     if (user) {
       console.log("navigateeee", user);
+    console.log("list", list);
+    console.log("errorDoctor", errorDoctor);
+    console.log("isLoadingDoctor", isLoadingDoctor);
+
 
       navigate('/dashboard', { replace: true });
     }
