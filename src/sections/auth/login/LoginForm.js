@@ -16,19 +16,14 @@ export default function LoginForm() {
   const dispatch = useDispatch();
 
   const { user, error, isLoading } = useSelector((state) => state.auth);
-  const { list, errorDoctor, isLoadingDoctor } = useSelector((state) => state.doctors);
+  const { doctorList, errorDoctor, isLoadingDoctor } = useSelector((state) => state.doctors);
 
-  store.dispatch(fetchDoctors());
 
   console.log("user", user);
   useEffect(() => {
     // Redirect the user to the dashboard page if they are already logged in
     if (user) {
-      console.log("navigateeee", user);
-    console.log("list", list);
-    console.log("errorDoctor", errorDoctor);
-    console.log("isLoadingDoctor", isLoadingDoctor);
-
+      store.dispatch(fetchDoctors());
 
       navigate('/dashboard', { replace: true });
     }
@@ -43,13 +38,6 @@ export default function LoginForm() {
 
     dispatch(login(email, password));
   };
-
-  // if (user) {
-  //   console.log("u", user);
-  //   return navigate('/dashboard', { replace: true });
-  // }
-
- 
 
   return (
     <>

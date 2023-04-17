@@ -7,10 +7,14 @@ import {
 } from '../sections/@dashboard/app';
 
 
+function countDoctors(doctorsArray) {
+  return doctorsArray.length
+}
+
 
 export default function DashboardAppPage() {
 
-  const { list, errorDoctor, isLoadingDoctor } = useSelector((state) => state.doctors);
+  const { doctorList, errorDoctor, isLoadingDoctor } = useSelector((state) => state.doctors);
 
   return (
     <>
@@ -25,7 +29,7 @@ export default function DashboardAppPage() {
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Doctors" total={12} icon={'ant-design:user-outlined'} />
+            <AppWidgetSummary title="Doctors" total={countDoctors(doctorList)} icon={'ant-design:user-outlined'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>

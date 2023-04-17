@@ -14,7 +14,7 @@ export const fetchDoctors = createAsyncThunk(
 const doctorsSlice = createSlice({
   name: "doctors",
   initialState: {
-    list: [],
+    doctorList: [],
     isLoadinDoctor: false,
     errorDoctor: null,
   },
@@ -27,7 +27,7 @@ const doctorsSlice = createSlice({
       })
       .addCase(fetchDoctors.fulfilled, (state, action) => {
         state.isLoadinDoctor = false;
-        state.list = action.payload;
+        state.doctorList = action.payload;
         state.errorDoctor = null;
       })
       .addCase(fetchDoctors.rejected, (state, action) => {
