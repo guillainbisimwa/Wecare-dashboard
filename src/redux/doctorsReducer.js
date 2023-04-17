@@ -20,7 +20,7 @@ const doctorsSlice = createSlice({
   name: "doctors",
   initialState: {
     doctorList: [],
-    isLoadinDoctor: false,
+    isLoadingDoctor: false,
     errorDoctor: null,
   },
   reducers: {},
@@ -29,16 +29,16 @@ const doctorsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchDoctors.pending, (state) => {
-        state.isLoadinDoctor = true;
+        state.isLoadingDoctor = true;
         state.errorDoctor = null;
       })
       .addCase(fetchDoctors.fulfilled, (state, action) => {
-        state.isLoadinDoctor = false;
+        state.isLoadingDoctor = false;
         state.doctorList = action.payload;
         state.errorDoctor = null;
       })
       .addCase(fetchDoctors.rejected, (state, action) => {
-        state.isLoadinDoctor = false;
+        state.isLoadingDoctor = false;
         state.errorDoctor = action.errorDoctor.message;
       });
   },
