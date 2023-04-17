@@ -174,11 +174,11 @@ export default function PatientPage() {
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const [currentDoctor, setCurrentDoctor ] = useState(null)
+  const [currentPatient, setCurrentPatient ] = useState(null)
 
   const handleOpenMenu = (event, id) => {
     setOpen(event.currentTarget);
-    setCurrentDoctor(id)
+    setCurrentPatient(id)
   };
 
   const handleCloseMenu = () => {
@@ -371,8 +371,8 @@ export default function PatientPage() {
         }}
       >
         <MenuItem  onClick={()=> {
-          console.log(currentDoctor);
-          navigate('/dashboard/doctor-profile', { replace: true }, {id: "ok"});
+          console.log(currentPatient);
+          navigate('/dashboard/patient-profile', { replace: true }, {id: "ok"});
         }}>
           <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }} />
           View profile
