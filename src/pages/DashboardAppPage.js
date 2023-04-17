@@ -12,11 +12,11 @@ import {
 export default function DashboardAppPage() {
   const navigate = useNavigate();
 
-  const user = useSelector((state) => state.user.user);
-  
+  const { user, error, isLoading } = useSelector((state) => state.auth);
+
   useEffect(() => {
     // Redirect the user to the dashboard page if they are already logged in
-    if (!user.success) {
+    if (!user) {
       console.log("navigate", user);
 
       navigate('/login', { replace: true });
