@@ -7,7 +7,7 @@ import ThemeProvider from './theme';
 
 export default function App() {
   return (
-    <Provider store={store}> {/* Add Provider here */}
+    <Provider store={store}>
       <style>{`body { background-color: #f2f8ff; }`}</style>
       <HelmetProvider>
         <BrowserRouter>
