@@ -16,6 +16,11 @@ const navConfig = [
     path: '/dashboard/doctor',
     icon: icon('ic_analytics'),
   },
+  {
+    title: 'patient',
+    path: '/dashboard/patient',
+    icon: icon('ic_analytics'),
+  },
   
 ];
 

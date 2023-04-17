@@ -10,6 +10,8 @@ import Page404 from './pages/Page404';
 import DashboardAppPage from './pages/DashboardAppPage';
 import DoctorProfile from './pages/DoctorProfile';
 
+import PatientPage from './pages/PatientPage';
+
 export default function Router() {
   const { user } = useSelector((state) => state.auth);
 
@@ -22,6 +24,7 @@ export default function Router() {
         { path: 'app', element: <DashboardAppPage /> },
         { path: 'doctor', element: <DoctorPage /> },
         { path: 'doctor-profile', element: <DoctorProfile /> },
+        { path: 'patient', element: <PatientPage /> },
       ],
     },
     {
