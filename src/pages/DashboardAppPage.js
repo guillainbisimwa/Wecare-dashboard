@@ -14,7 +14,7 @@ function countDoctors(doctorsArray) {
 
 export default function DashboardAppPage() {
 
-  const { doctorList, errorDoctor, isLoadingDoctor } = useSelector((state) => state.doctors);
+  const { doctorList } = useSelector((state) => state.doctors);
 
   return (
     <>

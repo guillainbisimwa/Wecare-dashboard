@@ -11,12 +11,12 @@ import DashboardAppPage from './pages/DashboardAppPage';
 import DoctorProfile from './pages/DoctorProfile';
 
 export default function Router() {
-  const { user, error, isLoading } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
 
   const routes = useRoutes([
     {
       path: '/dashboard',
-      element: user ? <DashboardLayout /> : <Navigate to="/login" />,
+      element: !user ? <DashboardLayout /> : <Navigate to="/login" />,
       children: [
         { element: <Navigate to="/dashboard/app" />, index: true },
         { path: 'app', element: <DashboardAppPage /> },

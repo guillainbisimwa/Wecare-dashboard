@@ -2,19 +2,7 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet-async';
 // @mui
 import { Grid, Container, Typography, Card, Stack, Avatar, Box, Divider } from '@mui/material';
-import { alpha, styled } from '@mui/material/styles';
 import Iconify from '../components/iconify';
-
-const StyledIcon = styled('div')(({ theme }) => ({
-  margin: 'auto',
-  display: 'flex',
-  borderRadius: '50%',
-  alignItems: 'center',
-  width: theme.spacing(8),
-  height: theme.spacing(8),
-  justifyContent: 'center',
-  marginBottom: theme.spacing(3),
-}));
 
 DoctorProfile.propTypes = {
   color: PropTypes.string,

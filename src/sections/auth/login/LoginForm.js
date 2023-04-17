@@ -16,8 +16,6 @@ export default function LoginForm() {
   const dispatch = useDispatch();
 
   const { user, error, isLoading } = useSelector((state) => state.auth);
-  const { doctorList, errorDoctor, isLoadingDoctor } = useSelector((state) => state.doctors);
-
 
   console.log("user", user);
   useEffect(() => {
