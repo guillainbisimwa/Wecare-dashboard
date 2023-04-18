@@ -115,7 +115,7 @@ export default function DoctorProfile({color = 'primary'}) {
                 <Iconify icon="akar-icons:phone" width={20} height={20} />
 
                 <Typography variant="subtitle2" sx={{ fontWeight: 'bold' }}>
-                practiceNumber
+                Practice Number
                 </Typography>
               </Stack>
               <Typography variant="body2" sx={{ py: 1 }}>

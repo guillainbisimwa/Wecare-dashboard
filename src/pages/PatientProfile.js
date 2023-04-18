@@ -100,7 +100,7 @@ export default function PatientProfile({color = 'customer'}) {
                 </Typography>
               </Stack>
               <Typography variant="body2" sx={{ py: 1 }}>
-                {USER.age}
+                {USER.age} years old
               </Typography>
 
               <Divider sx={{ my: 2 }} />
@@ -114,7 +114,7 @@ export default function PatientProfile({color = 'customer'}) {
                 </Typography>
               </Stack>
               <Typography variant="body2" sx={{ py: 1 }}>
-                {USER.height}
+                {USER.height} m
               </Typography>
 
               <Divider sx={{ my: 2 }} />
@@ -127,7 +127,7 @@ export default function PatientProfile({color = 'customer'}) {
                 </Typography>
               </Stack>
               <Typography variant="body2" sx={{ py: 1 }}>
-                {USER.weight}
+                {USER.weight} kg
               </Typography>
 
               <Divider sx={{ my: 2 }} />
