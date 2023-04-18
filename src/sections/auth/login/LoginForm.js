@@ -1,44 +1,33 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox, Typography, CircularProgress, Box } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
+
+import Iconify from '../../../components/iconify';
+import { login } from '../../../redux/loginAction';
 
 import {store} from '../../../redux/Store';
 
 import { fetchDoctors } from '../../../redux/doctorsReducer';
 import { fetchPatients } from '../../../redux/patientsReducer';
 
-import Iconify from '../../../components/iconify';
-import { login } from '../../../redux/loginAction';
-
 export default function LoginForm() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user, error, isLoading } = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    // Redirect the user to the dashboard page if they are already logged in
-    if (user) {
-      // Calling `fetchDoctors` action from the doctorsSlice slice, and then dispatch it using the 
-      // `store.dispatch` function when the user log in. 
-      // This will trigger the API call to fetch the list of doctors.
-
-      store.dispatch(fetchDoctors());
-      store.dispatch(fetchPatients());
-
-      navigate('/dashboard', { replace: true });
-    }
-  }, [user, navigate]);
+  const { error, isLoading } = useSelector((state) => state.auth);
+ 
 
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState(''); // admin1@wecare.com
-  const [password, setPassword] = useState(''); // wecare2022
+  const [email, setEmail] = useState('admin1@wecare.com'); // admin1@wecare.com
+  const [password, setPassword] = useState('wecare2022'); // wecare2022
 
   const handleClick = (e) => {
     e.preventDefault();
+    
+    store.dispatch(fetchDoctors());
+    store.dispatch(fetchPatients());
 
     dispatch(login(email, password));
   };

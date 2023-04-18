@@ -12,7 +12,7 @@ export const login = (email, password) => async (dispatch) => {
     });
 
     // Save user data to LocalStorage
-    localStorage.setItem('user', JSON.stringify(response.data));
+    localStorage.setItem('user', JSON.stringify(await response.data));
 
     // Dispatch loginSuccess action with response data
     dispatch(loginSuccess(response.data));
