@@ -1,5 +1,8 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useLocation } from 'react-router-dom';
+
 // @mui
 import { Grid, Container, Typography, Card, Stack, Avatar, Box, Divider } from '@mui/material';
 import Iconify from '../components/iconify';
@@ -8,23 +11,11 @@ PatientProfile.propTypes = {
   color: PropTypes.string,
 };
 
-const USER = {
-  _id:"63ee7558638f75180f35d492",
-   name:"patient1",
-   email:"patient1@wecare.com",
-   phoneNumber:"0000000000",
-   createdAt:"2023-02-16T18:26:32.727Z",
-   updatedAt:"2023-04-11T10:20:56.049Z",
-   __v:16,
-   age:25,
-   height:43,
-   gender:"Male",
-   weight:37,
-   wallet:"6435348742fd34ad1f68ae88",
-   id:"63ee7558638f75180f35d492"
-};
-
 export default function PatientProfile({color = 'customer'}) {
+  const location = useLocation();
+  const { patientObject } = location.state || {};
+
+  const [patient, setPatient] = useState(JSON.parse(patientObject));
 
   return (
     <>
@@ -51,21 +42,21 @@ export default function PatientProfile({color = 'customer'}) {
             >
               <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                 <Avatar sx={{ width: 120, height: 120, fontSize: 48 }}>
-                  {USER.name.charAt(0)}
+                  {patient.name.charAt(0)}
                 </Avatar>
               </Box>
 
               <Typography variant="h3" sx={{ mt: 3 }}>
-                {USER.name}
+                {patient.name}
               </Typography>
 
               <Typography variant="subtitle2" sx={{ opacity: 0.72, mt: 1 }}>
-                {USER.email}
+                {patient.email}
               </Typography>
 
               <Stack sx={{display: 'flex', mt:3, justifyContent: 'center', alignItems: 'center'}} direction="row" spacing={1} >
                 <Iconify icon="akar-icons:phone" width={24} height={24} />
-                <Typography variant="body2">{USER.phoneNumber}</Typography>
+                <Typography variant="body2">{patient.phoneNumber}</Typography>
               </Stack>
             </Card>
           </Grid>
@@ -88,7 +79,7 @@ export default function PatientProfile({color = 'customer'}) {
                 </Typography>
               </Stack>
               <Typography variant="body2" sx={{ py: 1 }}>
-                {USER.gender}
+                {patient.gender}
               </Typography>
 
               <Divider sx={{ my: 2 }} />
@@ -100,7 +91,7 @@ export default function PatientProfile({color = 'customer'}) {
                 </Typography>
               </Stack>
               <Typography variant="body2" sx={{ py: 1 }}>
-                {USER.age} years old
+                {patient.age} years old
               </Typography>
 
               <Divider sx={{ my: 2 }} />
@@ -114,7 +105,7 @@ export default function PatientProfile({color = 'customer'}) {
                 </Typography>
               </Stack>
               <Typography variant="body2" sx={{ py: 1 }}>
-                {USER.height} m
+                {patient.height} m
               </Typography>
 
               <Divider sx={{ my: 2 }} />
@@ -127,7 +118,7 @@ export default function PatientProfile({color = 'customer'}) {
                 </Typography>
               </Stack>
               <Typography variant="body2" sx={{ py: 1 }}>
-                {USER.weight} kg
+                {patient.weight} kg
               </Typography>
 
               <Divider sx={{ my: 2 }} />
@@ -140,7 +131,7 @@ export default function PatientProfile({color = 'customer'}) {
                 </Typography>
               </Stack>
               <Typography variant="body2" sx={{ py: 1 }}>
-                {USER.createdAt}
+                {patient.createdAt}
               </Typography>
               
                 

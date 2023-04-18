@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { filter } from 'lodash';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -29,6 +29,9 @@ import Iconify from '../components/iconify';
 import Scrollbar from '../components/scrollbar';
 // sections
 import { PatientListHead, PatientListToolbar } from '../sections/@dashboard/patient';
+import { store } from '../redux/Store';
+import { fetchPatients } from '../redux/patientsReducer';
+
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
@@ -73,6 +76,12 @@ export default function PatientPage() {
   const navigate = useNavigate();
   const { patientList } = useSelector((state) => state.patients);
 
+  useEffect(() => {
+    // Fetch doctor and patient lists when component mounts
+    store.dispatch(fetchPatients());
+  }, [store.dispatch]);
+
+
   const [open, setOpen] = useState(null);
 
   const [page, setPage] = useState(0);
@@ -89,9 +98,9 @@ export default function PatientPage() {
 
   const [currentPatient, setCurrentPatient ] = useState(null)
 
-  const handleOpenMenu = (event, id) => {
+  const handleOpenMenu = (event, patientObject) => {
     setOpen(event.currentTarget);
-    setCurrentPatient(id)
+    setCurrentPatient(JSON.stringify(patientObject))
   };
 
   const handleCloseMenu = () => {
@@ -211,7 +220,7 @@ export default function PatientPage() {
 
                         <TableCell align="right">
                           <IconButton size="large" color="inherit" onClick={(e)=>{
-                              handleOpenMenu(e, id);
+                              handleOpenMenu(e, row);
                             }}>
                             <Iconify icon={'eva:more-vertical-fill'} />
                           </IconButton>
@@ -284,8 +293,10 @@ export default function PatientPage() {
         }}
       >
         <MenuItem  onClick={()=> {
-          console.log(currentPatient);
-          navigate('/dashboard/patient-profile', { replace: true }, {id: "ok"});
+          // Sending params
+          const params = { patientObject: currentPatient };
+          navigate('/dashboard/patient-profile',  { state: params });
+
         }}>
           <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }} />
           View profile
