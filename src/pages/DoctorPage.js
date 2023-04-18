@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { filter } from 'lodash';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -29,6 +29,9 @@ import Iconify from '../components/iconify';
 import Scrollbar from '../components/scrollbar';
 // sections
 import { DoctorListHead, DoctorListToolbar } from '../sections/@dashboard/doctor';
+import { fetchDoctors } from '../redux/doctorsReducer';
+import { store } from '../redux/Store';
+
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
@@ -75,6 +78,10 @@ export default function DoctorPage() {
 
   const { doctorList } = useSelector((state) => state.doctors);
 
+  useEffect(() => {
+    // Fetch doctor and patient lists when component mounts
+    store.dispatch(fetchDoctors());
+  }, [store.dispatch]);
 
   const [open, setOpen] = useState(null);
 
@@ -92,9 +99,9 @@ export default function DoctorPage() {
 
   const [currentDoctor, setCurrentDoctor ] = useState(null)
 
-  const handleOpenMenu = (event, id) => {
+  const handleOpenMenu = (event, doctorObject) => {
     setOpen(event.currentTarget);
-    setCurrentDoctor(id)
+    setCurrentDoctor(JSON.stringify(doctorObject))
   };
 
   const handleCloseMenu = () => {
@@ -214,7 +221,7 @@ export default function DoctorPage() {
 
                         <TableCell align="right">
                           <IconButton size="large" color="inherit" onClick={(e)=>{
-                              handleOpenMenu(e, id);
+                              handleOpenMenu(e, row);
                             }}>
                             <Iconify icon={'eva:more-vertical-fill'} />
                           </IconButton>
@@ -288,7 +295,8 @@ export default function DoctorPage() {
       >
         <MenuItem  onClick={()=> {
           console.log(currentDoctor);
-          navigate('/dashboard/doctor-profile', { replace: true }, {id: "ok"});
+          const params = { doctorObject: currentDoctor };
+          navigate('/dashboard/doctor-profile',  { state: params });
         }}>
           <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }} />
           View profile
