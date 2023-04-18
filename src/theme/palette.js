@@ -43,6 +43,15 @@ const INFO = {
   contrastText: '#fff',
 };
 
+const CUSTOMER = {
+  lighter: '#41a4ff9e',
+  light: '#74CAFF',
+  main: '#1890FF',
+  dark: '#0C53B7',
+  darker: '#04297A',
+  contrastText: '#fff',
+};
+
 const SUCCESS = {
   lighter: '#E9FCD4',
   light: '#AAF27F',
@@ -79,6 +88,7 @@ const palette = {
   warning: WARNING,
   error: ERROR,
   grey: GREY,
+  customer: CUSTOMER,
   divider: alpha(GREY[500], 0.24),
   text: {
     primary: GREY[800],

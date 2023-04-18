@@ -11,7 +11,6 @@ function countDoctors(doctorsArray) {
   return doctorsArray.length
 }
 
-
 export default function DashboardAppPage() {
 
   const { doctorList } = useSelector((state) => state.doctors);
