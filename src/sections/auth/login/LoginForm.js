@@ -1,25 +1,49 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// @mui
-import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+
+
+import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox, Typography, CircularProgress, Box } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
-// components
+import {store} from '../../../redux/Store';
+import { fetchDoctors } from '../../../redux/doctorsReducer';
 import Iconify from '../../../components/iconify';
+import { login } from '../../../redux/loginAction';
 
 
 export default function LoginForm() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user, error, isLoading } = useSelector((state) => state.auth);
+
+  console.log("user", user);
+  useEffect(() => {
+    // Redirect the user to the dashboard page if they are already logged in
+    if (user) {
+      store.dispatch(fetchDoctors());
+
+      navigate('/dashboard', { replace: true });
+    }
+  }, [user, navigate]);
 
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState('admin1@wecare.com');
+  const [password, setPassword] = useState('wecare2022');
 
-  const handleClick = () => {
-    navigate('/dashboard', { replace: true });
+  const handleClick = (e) => {
+    e.preventDefault();
+
+    dispatch(login(email, password));
   };
 
   return (
     <>
       <Stack spacing={3}>
-        <TextField name="email" label="Email address" />
+        {error && <Typography variant="body" sx={{ textAlign: 'center', color: 'red', mb: 3 }}>{error}</Typography>}
+        {isLoading && <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}><CircularProgress /></Box>}
+
+        <TextField name="email" label="Email address" value={email} onChange={(e) => setEmail(e.target.value)} />
 
         <TextField
           name="password"
@@ -34,6 +58,8 @@ export default function LoginForm() {
               </InputAdornment>
             ),
           }}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </Stack>
 

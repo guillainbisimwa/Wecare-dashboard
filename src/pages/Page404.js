@@ -38,7 +38,7 @@ export default function Page404() {
 
           <Box
             component="img"
-            src="/assets/2.png"
+            src="/assets/logo.png"
             sx={{ height: 260, mx: 'auto', my: { xs: 5, sm: 10 } }}
           />
 

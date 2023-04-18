@@ -15,8 +15,6 @@ export default function AccountPopover() {
 
   const handleClose = () => {
     setOpen(null);
-    navigate('/login', { replace: true });
-
   };
 
   return (
@@ -38,7 +36,7 @@ export default function AccountPopover() {
           }),
         }}
       >
-        <Avatar src="/assets/1.png" alt="photoURL" />
+        <Avatar src="/assets/admin.png" alt="photoURL" />
       </IconButton>
 
       <Popover
@@ -73,7 +71,11 @@ export default function AccountPopover() {
 
         <Divider sx={{ borderStyle: 'dashed' }} />
 
-        <MenuItem onClick={handleClose} sx={{ m: 1 }}>
+        <MenuItem onClick={()=>{
+          handleClose();
+          navigate('/login', { replace: true });
+        }
+          } sx={{ m: 1 }}>
           Logout
         </MenuItem>
       </Popover>

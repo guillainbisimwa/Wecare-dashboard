@@ -1,4 +1,5 @@
 import { Navigate, useRoutes } from 'react-router-dom';
+import { useSelector } from 'react-redux'; // import the useSelector hook
 // layouts
 import DashboardLayout from './layouts/dashboard';
 import SimpleLayout from './layouts/simple';
@@ -10,10 +11,12 @@ import DashboardAppPage from './pages/DashboardAppPage';
 import DoctorProfile from './pages/DoctorProfile';
 
 export default function Router() {
+  const { user } = useSelector((state) => state.auth);
+
   const routes = useRoutes([
     {
       path: '/dashboard',
-      element: <DashboardLayout />,
+      element: !user ? <DashboardLayout /> : <Navigate to="/login" />,
       children: [
         { element: <Navigate to="/dashboard/app" />, index: true },
         { path: 'app', element: <DashboardAppPage /> },

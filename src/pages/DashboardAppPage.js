@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet-async';
 // @mui
 import { Grid, Container, Typography } from '@mui/material';
@@ -5,7 +6,15 @@ import {
   AppWidgetSummary,
 } from '../sections/@dashboard/app';
 
+
+function countDoctors(doctorsArray) {
+  return doctorsArray.length
+}
+
+
 export default function DashboardAppPage() {
+
+  const { doctorList } = useSelector((state) => state.doctors);
 
   return (
     <>
@@ -20,11 +29,11 @@ export default function DashboardAppPage() {
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Doctors" total={12} icon={'ant-design:android-filled'} />
+            <AppWidgetSummary title="Doctors" total={countDoctors(doctorList)} icon={'ant-design:user-outlined'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Patients" total={200} color="error" icon={'ant-design:apple-filled'} />
+            <AppWidgetSummary title="Patients" total={200} color="error" icon={'ant-design:user-outlined'} />
           </Grid>
 
         </Grid>
