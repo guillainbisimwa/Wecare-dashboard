@@ -20,8 +20,8 @@ export default function LoginForm() {
  
 
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState('admin1@wecare.com'); // admin1@wecare.com
-  const [password, setPassword] = useState('wecare2022'); // wecare2022
+  const [email, setEmail] = useState(''); // admin1@wecare.com
+  const [password, setPassword] = useState(''); // wecare2022
 
   const handleClick = (e) => {
     e.preventDefault();

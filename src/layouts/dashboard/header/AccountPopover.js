@@ -3,9 +3,18 @@ import { useState } from 'react';
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, MenuItem, Avatar, IconButton, Popover } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logoutUser } from '../../../redux/authReducer';
 
 export default function AccountPopover() {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    navigate('/login', { replace: true });
+  };
 
   const [open, setOpen] = useState(null);
 
@@ -63,7 +72,7 @@ export default function AccountPopover() {
             Admin
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            wecare@test.me
+            admin1@wecare.com
           </Typography>
         </Box>
 
@@ -73,7 +82,7 @@ export default function AccountPopover() {
 
         <MenuItem onClick={()=>{
           handleClose();
-          navigate('/login', { replace: true });
+          handleLogout();
         }
           } sx={{ m: 1 }}>
           Logout
