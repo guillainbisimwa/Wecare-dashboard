@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { filter } from 'lodash';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 // @mui
 import {
@@ -39,95 +40,6 @@ const TABLE_HEAD = [
   { id: '' },
 ];
 
-const USERLIST = 
-[ {
-   _id:"63ee7558638f75180f35d492",
-    name:"patient1",
-    email:"patient1@wecare.com",
-    phoneNumber:"0000000000",
-    createdAt:"2023-02-16T18:26:32.727Z",
-    updatedAt:"2023-04-11T10:20:56.049Z",
-    __v:16,
-    age:25,
-    height:43,
-    gender:"Male",
-    weight:37,
-    wallet:"6435348742fd34ad1f68ae88",
-    id:"63ee7558638f75180f35d492"
-},
-{
-    _id:"642172acb624445f83bdc9dc",
-    name:"Krishna Singh",
-    email:"krishnasingh200113@gmail.com",
-    phoneNumber:"7225965651",
-    createdAt:"2023-03-27T10:40:44.789Z",
-    updatedAt:"2023-03-27T10:40:44.789Z",
-    __v:0,
-    age:25,
-    height:43,
-    gender:"Female",
-    weight:37,
-    id:"642172acb624445f83bdc9dc"
-},
-{
-    _id:"6421c739fb238443910aa656",
-    name:"Krishna Singh",
-    email:"krishnasingh2003@gmail.com",
-    phoneNumber:"7225965651",
-    createdAt:"2023-03-27T16:41:29.100Z",
-    updatedAt:"2023-03-27T16:41:29.100Z",
-    __v:0,
-    age:25,
-    height:43,
-    gender:"Male",
-    weight:37,
-    id:"6421c739fb238443910aa656"
-},
-{
-    _id:"64346d28f42df3faf130d9b6",
-    name:"test",
-    email:"test@wecare.com",
-    phoneNumber:"9999999999",
-    createdAt:"2023-04-10T20:10:16.824Z",
-    updatedAt:"2023-04-10T20:10:16.824Z",
-    __v:0,
-    age:25,
-    height:43,
-    gender:"Male",
-    weight:37,
-    id:"64346d28f42df3faf130d9b6"
-},
-{
-    _id:"64346de1f42df3faf130d9bf",
-    name:"test2",
-    email:"test4@wecare.com",
-    phoneNumber:"9977663355",
-    createdAt:"2023-04-10T20:13:21.971Z",
-    updatedAt:"2023-04-10T20:13:23.390Z",
-    __v:0,
-     age:28,
-    height:152,
-    gender:"Female",
-    weight:80,
-    id:"64346de1f42df3faf130d9bf"
-},
-{
-    _id:"64352a06292409405615c1d1",
-    name:"patient2",
-    email:"patient2@wecare.com",
-    phoneNumber:"0000000000",
-    createdAt:"2023-04-11T09:36:06.795Z",
-    updatedAt:"2023-04-11T09:36:06.795Z",
-    __v:0,
-     age:25,
-    height:43,
-    gender:"Male",
-    weight:37,
-    id:"64352a06292409405615c1d1"
-}
-]
-
-
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -159,6 +71,7 @@ function applySortFilter(array, comparator, query) {
 
 export default function PatientPage() {
   const navigate = useNavigate();
+  const { patientList } = useSelector((state) => state.patients);
 
   const [open, setOpen] = useState(null);
 
@@ -193,7 +106,7 @@ export default function PatientPage() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = USERLIST.map((n) => n.name);
+      const newSelecteds = patientList.map((n) => n.name);
       setSelected(newSelecteds);
       return;
     }
@@ -229,9 +142,9 @@ export default function PatientPage() {
     setFilterName(event.target.value);
   };
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - USERLIST.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - patientList.length) : 0;
 
-  const filteredUsers = applySortFilter(USERLIST, getComparator(order, orderBy), filterName);
+  const filteredUsers = applySortFilter(patientList, getComparator(order, orderBy), filterName);
 
   const isNotFound = !filteredUsers.length && !!filterName;
 
@@ -258,7 +171,7 @@ export default function PatientPage() {
                   order={order}
                   orderBy={orderBy}
                   headLabel={TABLE_HEAD}
-                  rowCount={USERLIST.length}
+                  rowCount={patientList.length}
                   numSelected={selected.length}
                   onRequestSort={handleRequestSort}
                   onSelectAllClick={handleSelectAllClick}
@@ -343,7 +256,7 @@ export default function PatientPage() {
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
-            count={USERLIST.length}
+            count={patientList.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
