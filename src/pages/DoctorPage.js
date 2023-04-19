@@ -81,6 +81,7 @@ export default function DoctorPage() {
   useEffect(() => {
     // Fetch doctor and patient lists when component mounts
     store.dispatch(fetchDoctors());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [store.dispatch]);
 
   const [open, setOpen] = useState(null);

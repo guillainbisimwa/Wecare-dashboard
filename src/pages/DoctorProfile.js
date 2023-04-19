@@ -16,6 +16,7 @@ export default function DoctorProfile({color = 'primary'}) {
   const location = useLocation();
   const { doctorObject } = location.state || {};
 
+  // eslint-disable-next-line no-unused-vars
   const [doctor, setDoctor] = useState(JSON.parse(doctorObject));
 
   return (

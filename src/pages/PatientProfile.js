@@ -15,6 +15,7 @@ export default function PatientProfile({color = 'customer'}) {
   const location = useLocation();
   const { patientObject } = location.state || {};
 
+  // eslint-disable-next-line no-unused-vars
   const [patient, setPatient] = useState(JSON.parse(patientObject));
 
   return (
